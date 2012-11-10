@@ -19,4 +19,10 @@ class SeshController {
 		[card: seshInstance.nextCard()]
 	}
 
+	def stats() {
+		def seshInstance = Sesh.get(params.id)
+		def total = seshInstance ? seshInstance.ansas.count() : null
+		def totalCorrect = seshInstance ? seshInstance.ansas.findAllByCorrect(true).count() : null
+		render(view:"stats.gsp", model: [seshInstance: seshInstance, total: total, totalCorrect: totalCorrect])
+	}
 }
