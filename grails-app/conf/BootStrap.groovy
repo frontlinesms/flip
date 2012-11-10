@@ -9,6 +9,7 @@ class BootStrap {
 		createMisterMenDeck()
 		createDemoGameAndSesh()
 		createUsers()
+		createDemoGameAndSesh()
 		createSmallDeckAndGame()
 	}
 	def destroy = {
@@ -41,7 +42,7 @@ class BootStrap {
 		}
 		deck.save(flus:true, failOnError:true)
 		def game = new Game(deck:deck).save(failOnError:true, flush: true)
-		def sesh = new Sesh(game: game, complete: false, cards: game.deck.cards).save(flush: true, failOnError: true)
+		User.findByUsername("bob").addToSeshs(new Sesh(game: game, complete: false, cards: game.cards)).save(flush: true, failOnError: true)
 	}
 
 	def createAmharicAbugida() {
@@ -143,7 +144,7 @@ class BootStrap {
 
 	def createDemoGameAndSesh() {
 		def game = new Game(deck: Deck.findByName('Cyrillic Alphabet')).save(flush: true, failOnError: true)
-		def sesh = new Sesh(game: game, complete: false, cards: game.deck.cards).save(flush: true, failOnError: true)
+		def sesh = new Sesh(game: game, complete: false, cards: game.cards).save(flush: true, failOnError: true)
 	}
 
 	def addStringMetaclassMethods() {
