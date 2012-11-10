@@ -15,4 +15,8 @@ class Sesh {
     def getCardAt(int pos) {
     	return cards[pos]
     }
+
+    def correctCount() {
+    	return ansas.findAll { it.correct }.size()
+    }
 }

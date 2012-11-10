@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div id="stats">
-			<h2>You are so _______ you got x out of y</h2>
+			<h2>You are so _______ you got ${totalCorrect} out of ${total}</h2>
 		</div>
 		<div id="controls">
 			<g:link action="start" params="">Try again! [DOESN'T WORK!]</g:link>
