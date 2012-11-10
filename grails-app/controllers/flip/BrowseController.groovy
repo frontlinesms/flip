@@ -1,0 +1,5 @@
+package flip
+
+class BrowseController {
+	
+}
