@@ -1,6 +1,7 @@
 package flip
+import org.grails.taggable.*
 
-class Deck {
+class Deck implements Taggable{
 	String name
 	static hasMany = [cards:Card]
 }
