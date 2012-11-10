@@ -36,7 +36,7 @@ class SeshController {
 	def stats() {
 		def seshInstance = Sesh.get(params.id)
 		def total = seshInstance ? seshInstance.ansas.size() : null
-		def totalCorrect = seshInstance?.correctCount()
+		def totalCorrect = seshInstance?.correctCount
 		render(view:"stats.gsp", model: [seshInstance: seshInstance, total: total, totalCorrect: totalCorrect])
 	}
 }
