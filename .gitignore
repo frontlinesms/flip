@@ -7,3 +7,4 @@ web-app/i18n/
 target/
 
 *.swp
+*.orig

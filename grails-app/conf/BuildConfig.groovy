@@ -36,16 +36,27 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.16'
     }
 
-    plugins {
-        runtime ":hibernate:$grailsVersion"
-        runtime ":jquery:1.7.1"
-        runtime ":resources:1.1.6"
+	plugins {
+		compile ":hibernate:$grailsVersion"
+		compile ":jquery:1.8.2"
+		compile ":jquery-ui:1.8.24"
+		compile ":famfamfam:1.0"
+		compile ":resources:1.1.6"
 
-        // Uncomment these (or add new ones) to enable additional resources capabilities
-        //runtime ":zipped-resources:1.0"
-        //runtime ":cached-resources:1.0"
-        //runtime ":yui-minify-resources:0.1.4"
+		compile ':mail:1.0.1'
 
-        build ":tomcat:$grailsVersion"
-    }
+		// Uncomment these (or add new ones) to enable additional resources capabilities
+		//runtime ":zipped-resources:1.0"
+		//runtime ":cached-resources:1.0"
+		//runtime ":yui-minify-resources:0.1.4"
+
+		build ":tomcat:$grailsVersion"
+
+		compile ':spring-security-core:1.2.7.3'
+		compile ':spring-security-ui:0.2'
+		compile ':excel-import:1.0.0'
+		compile ":joda-time:1.4"
+		compile ":csv:0.3.1"
+	}
 }
+

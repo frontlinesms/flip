@@ -8,6 +8,7 @@ class BootStrap {
 		createAmharicAbugida()
 		createMisterMenDeck()
 		createDemoGameAndSesh()
+		createUsers()
 		createSmallDeckAndGame()
 	}
 	def destroy = {
@@ -20,6 +21,16 @@ class BootStrap {
 		d.addToCards(a:'https://si0.twimg.com/profile_images/1012178433/MrTall_bigger.gif', b:'Mr. Tall')
 		d.addToCards(a:'http://www.themistermen.co.uk/images/mrmen_uk/small.gif', b:'Mr. Small')
 		d.save(flush:true, failOnError:true)
+	}
+
+	def createUsers() {
+		def alf = new User(username:'alf', password:'secret', enabled:true).save(flush:true, failOnError:true)
+		def adminRole = new Role(authority:'ROLE_ADMIN').save(flush:true, failOnError:true)
+		UserRole.create(alf, adminRole)
+
+		def bob = new User(username:'bob', password:'secret', enabled:true).save(flush:true, failOnError:true)
+		def userRole = new Role(authority:'ROLE_USER').save(flush:true, failOnError:true)
+		UserRole.create(bob, userRole)
 	}
 
 	def createSmallDeckAndGame() {
