@@ -8,8 +8,8 @@ class SeshController {
 	}
 
 	def nxt() {
-		def seshInstance = // TODO
-		if(params.lastPos) {
+		def seshInstance = Sesh.get(params.seshId)
+		if (params.lastPos) {
 			seshInstance.addToAnsas(new Ansa(card: seshInstance.cards[params.lastPos], correct: params.lastAnsa == "true"))
 			seshInstance.pos += 1
 		}
