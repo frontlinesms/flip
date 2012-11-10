@@ -11,7 +11,7 @@
 			<h2>You rock (or not) you got ${totalCorrect} out of ${total}</h2>
 		</div>
 		<div id="controls">
-			<g:link action="restart" params="${[id: seshInstance.id]}">Try again! [DOESN'T WORK!]</g:link>
+			<g:link action="restart" params="${[id: seshInstance.id]}">Try again!</g:link>
 		</div>
 	</body>
 </html>
