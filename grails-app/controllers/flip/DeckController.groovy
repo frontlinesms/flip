@@ -143,8 +143,9 @@ println "contentType: $contentType"
 		cardParams.each { deck.addToCards(it) }
 	}
 
-	def rateDeck(){
-		if(params.rating){
+	def rateGame() {
+		// FIXME this needs to rate the Game, and the mathematics should be done inside e.g. Game.rate(int rating)
+		if(params.rating) {
 			def deck = Deck.get(params.id)
 			deck.rating = (((deck.rating * deck.voteCount) + (params.rating as Integer)) / (deck.voteCount + 1)) as Integer
 			deck.voteCount = deck.voteCount + 1

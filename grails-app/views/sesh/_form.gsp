@@ -2,6 +2,14 @@
 
 
 
+<div class="fieldcontain ${hasErrors(bean: seshInstance, field: 'user', 'error')} ">
+	<label for="user">
+		<g:message code="sesh.user.label" default="User" />
+		
+	</label>
+	<g:select id="user" name="user.id" from="${flip.User.list()}" optionKey="id" value="${seshInstance?.user?.id}" class="many-to-one" noSelection="['null': '']"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: seshInstance, field: 'ansas', 'error')} ">
 	<label for="ansas">
 		<g:message code="sesh.ansas.label" default="Ansas" />

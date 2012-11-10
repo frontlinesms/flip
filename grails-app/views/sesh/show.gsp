@@ -23,6 +23,15 @@
 			</g:if>
 			<ol class="property-list sesh">
 			
+				<g:if test="${seshInstance?.user}">
+				<li class="fieldcontain">
+					<span id="user-label" class="property-label"><g:message code="sesh.user.label" default="User" /></span>
+					
+						<span class="property-value" aria-labelledby="user-label"><g:link controller="user" action="show" id="${seshInstance?.user?.id}">${seshInstance?.user?.encodeAsHTML()}</g:link></span>
+					
+				</li>
+				</g:if>
+			
 				<g:if test="${seshInstance?.ansas}">
 				<li class="fieldcontain">
 					<span id="ansas-label" class="property-label"><g:message code="sesh.ansas.label" default="Ansas" /></span>
