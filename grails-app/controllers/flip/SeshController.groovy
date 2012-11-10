@@ -12,13 +12,16 @@ class SeshController {
 		def seshInstance = Sesh.get(params.seshId)
 		println "sesh Instance is $seshInstance"
 		if (params.lastPos) {
-			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa == "true"))
+			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
 			seshInstance.pos = seshInstance.pos + 1
 		}
 		else
 			seshInstance.pos = 0
 		seshInstance.save(failOnError: true)
-		render view:"play", model:[card: seshInstance.nextCard(), sesh: seshInstance]
+		if(seshInstance.detectCompletion())
+			redirect(action: 'stats', params:[id: seshInstance.id])
+		else
+			render view:"play", model:[card: seshInstance.nextCard(), sesh: seshInstance]
 	}
 
 	def stats() {
