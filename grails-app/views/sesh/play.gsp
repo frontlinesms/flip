@@ -17,7 +17,7 @@
 			</div>
 			<div id="ans_controls" style="display:none">
 				<g:link controller="sesh" action="nxt" params="${[lastAnsa:true, lastPos:sesh.pos, id:sesh.id]}">:-)</g:link>
-			<g:link controller="sesh" action="nxt" params="${[lastAnsa:false, lastPos:sesh.pos, id:sesh.id]}">:-(</g:link>
+				<g:link controller="sesh" action="nxt" params="${[lastAnsa:false, lastPos:sesh.pos, id:sesh.id]}">:-(</g:link>
 			</div>
 			<div id="debug">
 				${sesh.ansas}

@@ -7,6 +7,18 @@ class SeshController {
 		redirect(action: 'nxt', params: params)
 	}
 
+	def restart() {
+		def sesh = Sesh.get(params.id)
+		def cards
+		if (params.incorrectOnly)
+			cards = sesh.incorrectCards()
+		else 
+			cards = sesh.game.deck.cards
+		println cards
+		def newSesh = new Sesh(game: sesh.game, complete:false, cards: cards).save(failOnError:true, flush:true)
+		redirect(action: 'nxt', params:[id: newSesh.id])
+	}
+
 	def nxt() {
 		println "params::: ${params}"
 		def seshInstance = Sesh.get(params.id)
@@ -28,6 +40,6 @@ class SeshController {
 		def seshInstance = Sesh.get(params.id)
 		def total = seshInstance ? seshInstance.ansas.size() : null
 		def totalCorrect = seshInstance?.correctCount()
-		render(view:"stats.gsp", model: [seshInstance: seshInstance, total: total, totalCorrect: totalCorrect])
+		render(view:"stats.gsp", model: [sesh: seshInstance, total: total, totalCorrect: totalCorrect])
 	}
 }

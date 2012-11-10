@@ -12,6 +12,9 @@
 		</div>
 		<div id="controls">
 			<g:link action="start" params="">Try again! [DOESN'T WORK!]</g:link>
+			<g:if test="${totalCorrect != total}">
+    			<g:link action="restart" params="${[incorrectOnly: true, id: sesh.id]}">Redo failed cards!</g:link>
+			</g:if>
 		</div>
 	</body>
 </html>

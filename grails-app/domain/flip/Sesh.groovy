@@ -21,6 +21,10 @@ class Sesh {
         return pos >= (cards.size())
     }
 
+    def incorrectCards() {
+        return ansas.findAll { !it.correct }.card
+    }
+    
     def correctCount() {
     	return ansas.findAll { it.correct }.size()
     }
