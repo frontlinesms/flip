@@ -12,11 +12,11 @@
 		<div>
 			<div>
 				<h2>Categories</h2>
-				${categories}
+				${tags}
 			</div>
 			<div>
 				<h2>Popular</h2>
-				${popularCategories}
+				${popularTags}
 			</div>
 		</div>
 	</body>
