@@ -20,7 +20,7 @@
 				<g:link controller="sesh" action="nxt" params="${[lastAns:'false', lastPos:sesh.pos, seshId:sesh.id]}">:-(</g:link>
 			</div>
 			<div id="debug">
-				${sesh} : ${sesh.id}
+				${sesh.ansas}
 			</div>
 		</div>
 	</body>

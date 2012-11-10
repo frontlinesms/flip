@@ -12,7 +12,7 @@ class Sesh {
     	return cards[pos]
     }
 
-    def getCardAt(pos) {
+    def getCardAt(int pos) {
     	return cards[pos]
     }
 }
