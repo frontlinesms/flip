@@ -9,7 +9,7 @@ class SeshController {
 
 	def nxt() {
 		println "params::: ${params}"
-		def seshInstance = Sesh.get(params.seshId)
+		def seshInstance = Sesh.get(params.id)
 		println "sesh Instance is $seshInstance"
 		if (params.lastPos) {
 			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
