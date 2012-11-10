@@ -24,6 +24,8 @@
 				<thead>
 					<tr>
 					
+						<th><g:message code="sesh.user.label" default="User" /></th>
+					
 						<g:sortableColumn property="complete" title="${message(code: 'sesh.complete.label', default: 'Complete')}" />
 					
 						<th><g:message code="sesh.game.label" default="Game" /></th>
@@ -36,7 +38,9 @@
 				<g:each in="${seshInstanceList}" status="i" var="seshInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
-						<td><g:link action="show" id="${seshInstance.id}">${fieldValue(bean: seshInstance, field: "complete")}</g:link></td>
+						<td><g:link action="show" id="${seshInstance.id}">${fieldValue(bean: seshInstance, field: "user")}</g:link></td>
+					
+						<td><g:formatBoolean boolean="${seshInstance.complete}" /></td>
 					
 						<td>${fieldValue(bean: seshInstance, field: "game")}</td>
 					

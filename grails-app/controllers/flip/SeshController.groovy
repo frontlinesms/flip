@@ -5,12 +5,14 @@ class SeshController {
 	def scaffold = true
 
 	def start() {
-		redirect(action: 'nxt', params: params)
+		redirect(action:'nxt', params:params)
 	}
 
 	def restart() {
-		def newSesh = new Sesh(game: Sesh.get(params.id).game, complete:false, cards: Sesh.get(params.id).game.deck.cards, user: springSecurityService.getCurrentUser()).save(failOnError:true, flush:true)
-		redirect(action: 'nxt', params:[id: newSesh.id])
+		def sesh = Sesh.get(params.id)
+		def user = springSecurityService.currentUser
+		def newSesh = new Sesh(game:sesh.game, complete:false, cards:sesh.game.cards, user:user).save(failOnError:true, flush:true)
+		redirect(action:'nxt', params:[id:newSesh.id])
 	}
 
 	def nxt() {
