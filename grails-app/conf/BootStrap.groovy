@@ -4,6 +4,7 @@ class BootStrap {
 	def init = { servletContext ->
 		createCyrillicAlphabet()
 		createAmharicAbugida()
+		createDemoGameAndSesh()
 	}
 	def destroy = {
 	}
@@ -97,5 +98,10 @@ class BootStrap {
 		def deck = new Deck(name:'Cyrillic Alphabet')
 		cards.each { deck.addToCards(it) }
 		deck.save(flush:true, failOnError:true)
+	}
+
+	def createDemoGameAndSesh() {
+		def game = new Game(deck: Deck.findByName('Cyrillic Alphabet')).save(flush: true, failOnError: true)
+		def sesh = new Sesh(game: game, complete: false, cards: game.deck.cards).save(flush: true, failOnError: true)
 	}
 }
