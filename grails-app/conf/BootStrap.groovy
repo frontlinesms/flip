@@ -5,8 +5,19 @@ class BootStrap {
 		createCyrillicAlphabet()
 		createAmharicAbugida()
 		createDemoGameAndSesh()
+		createUsers()
 	}
 	def destroy = {
+	}
+
+	def createUsers() {
+		def alf = new User(username:'alf', password:'secret', enabled:true).save(flush:true, failOnError:true)
+		def adminRole = new Role(authority:'ROLE_ADMIN').save(flush:true, failOnError:true)
+		UserRole.create(alf, adminRole)
+
+		def bob = new User(username:'bob', password:'secret', enabled:true).save(flush:true, failOnError:true)
+		def userRole = new Role(authority:'ROLE_USER').save(flush:true, failOnError:true)
+		UserRole.create(bob, userRole)
 	}
 
 	def createAmharicAbugida() {
