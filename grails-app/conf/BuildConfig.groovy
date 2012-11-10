@@ -54,6 +54,9 @@ grails.project.dependency.resolution = {
 
 		compile ':spring-security-core:1.2.7.3'
 		compile ':spring-security-ui:0.2'
+		compile ':excel-import:1.0.0'
+		compile ":joda-time:1.4"
+		compile ":csv:0.3.1"
 	}
 }
 
