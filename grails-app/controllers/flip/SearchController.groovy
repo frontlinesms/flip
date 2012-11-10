@@ -9,7 +9,7 @@ class SearchableController {
             return [:]
         }
         try {
-            return [searchResult: searchableService.search(params.q, params), searchString:'qweqwe']
+            return [searchResult: searchableService.search(params.q, params), searchString:params.q]
         } catch (SearchEngineQueryParseException ex) {
             return [parseException: true]
         }

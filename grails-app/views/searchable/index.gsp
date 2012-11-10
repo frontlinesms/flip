@@ -3,11 +3,10 @@
 	<g:submitButton name="search-button" value="Search"/>
 </g:form>
 <div> Search String : ${searchString}</div>
-${searchResult}
 <g:if test="${searchResult?.results}">
 	<g:each in="${searchResult.results}" var="result">
 		<div>
-			<g:link controller="deck" action="show" id="${result.id}">${result.name}</g:link>
+			<g:link controller="deck" action="show" params="${[id:result.id]}">${result.name}</g:link>
 		</div>
 	</g:each>
 
