@@ -6,6 +6,7 @@ import  org.apache.poi.ss.usermodel.*
 
 class DeckController {
 	static final def DECK_COLUMN_MAP = [
+			startRow:1,
 			columnMap:[A:'a', B:'b']]
 	def excelImportService
 
@@ -131,7 +132,10 @@ println "contentType: $contentType"
 				def size = uploadedFile.size
 
 				def workbook = WorkbookFactory.create(new PushbackInputStream(uploadedFile.inputStream))
-				cardParams = excelImportService.columns workbook, DECK_COLUMN_MAP
+				def config = DECK_COLUMN_MAP.clone()
+				config.sheet = workbook.getSheetName(0)
+				println "config=$config"
+				cardParams = excelImportService.columns workbook, config
 		}
 		println "cardParams = $cardParams"
 		cardParams.each { deck.addToCards(it) }
