@@ -17,7 +17,6 @@ class Sesh {
     }
 
     def detectCompletion() {
-        println "pos is $pos and size is ${cards.size()}"
         return pos >= (cards.size())
     }
 

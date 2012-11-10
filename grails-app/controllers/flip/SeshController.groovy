@@ -15,12 +15,14 @@ class SeshController {
 	def nxt() {
 		def seshInstance = Sesh.get(params.id)
 		if (params.lastPos) {
-			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
+			def ansa = seshInstance.ansas.find { it.card ==  seshInstance.getCardAt(params.lastPos as int)}
+			if (ansa)
+				ansa.correct = params.lastAnsa
+			else
+				seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
 			seshInstance.pos = seshInstance.pos + 1
+			seshInstance.save(failOnError: true)
 		}
-		else
-			seshInstance.pos = 0
-		seshInstance.save(failOnError: true)
 		if(seshInstance.detectCompletion())
 			redirect(action: 'stats', params:[id: seshInstance.id])
 		else
