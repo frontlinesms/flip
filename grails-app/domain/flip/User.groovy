@@ -1,7 +1,6 @@
 package flip
 
 class User {
-
 	transient springSecurityService
 
 	String username
