@@ -57,6 +57,8 @@ grails.project.dependency.resolution = {
 		compile ':excel-import:1.0.0'
 		compile ":joda-time:1.4"
 		compile ":csv:0.3.1"
+
+		compile ":codenarc:0.17"
 	}
 }
 

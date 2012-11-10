@@ -3,24 +3,30 @@ package flip
 class Sesh {
 	Game game
 	static hasMany = [cards: Card, ansas: Ansa]
-    List cards
-    List ansas
-    int pos = 0
-    boolean complete
+	static belongsTo = [user: User]
 
-    def nextCard() {
-    	return cards[pos]
-    }
+	static constraints = {
+		user(nullable: true)
+	}
+	List cards
+	List ansas
+	int pos = 0
+	boolean complete
 
-    def getCardAt(int pos) {
-    	return cards[pos]
-    }
+	def nextCard() {
+		return cards[pos]
+	}
 
-    def detectCompletion() {
-        return pos >= (cards.size())
-    }
+	def getCardAt(int pos) {
+		return cards[pos]
+	}
 
-    def correctCount() {
-    	return ansas.findAll { it.correct }.size()
-    }
+	def detectCompletion() {
+		return pos >= (cards.size())
+	}
+
+	def getCorrectCount() {
+		return ansas.findAll { it.correct }.size()
+	}
 }
+
