@@ -10,4 +10,8 @@ class Sesh {
     List cards
     int pos
     boolean complete
+
+    def nextCard() {
+    	return cards[pos]
+    }
 }
