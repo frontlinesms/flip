@@ -1,6 +1,7 @@
 package flip
 
 class SeshController {
+	def springSecurityService
 	def scaffold = true
 
 	def start() {
@@ -8,7 +9,7 @@ class SeshController {
 	}
 
 	def restart() {
-		def newSesh = new Sesh(game: Sesh.get(params.id).game, complete:false, cards: Sesh.get(params.id).game.deck.cards).save(failOnError:true, flush:true)
+		def newSesh = new Sesh(game: Sesh.get(params.id).game, complete:false, cards: Sesh.get(params.id).game.deck.cards, user: springSecurityService.getCurrentUser()).save(failOnError:true, flush:true)
 		redirect(action: 'nxt', params:[id: newSesh.id])
 	}
 
@@ -21,8 +22,11 @@ class SeshController {
 		else
 			seshInstance.pos = 0
 		seshInstance.save(failOnError: true)
-		if(seshInstance.detectCompletion())
+		if(seshInstance.detectCompletion()) {
+			seshInstance.complete = true
+			seshInstance.save(failOnError:true)
 			redirect(action: 'stats', params:[id: seshInstance.id])
+		}
 		else
 			render view:"play", model:[card: seshInstance.nextCard(), sesh: seshInstance]
 	}

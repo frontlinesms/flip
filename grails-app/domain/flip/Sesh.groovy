@@ -3,6 +3,11 @@ package flip
 class Sesh {
 	Game game
 	static hasMany = [cards: Card, ansas: Ansa]
+    static belongsTo = [user: User]
+
+    static constraints = {
+        user(nullable: true)
+    }
     List cards
     List ansas
     int pos = 0

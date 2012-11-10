@@ -3,6 +3,7 @@ package flip
 class User {
 	transient springSecurityService
 
+	static hasMany = [seshs: Sesh]
 	String username
 	String password
 	boolean enabled

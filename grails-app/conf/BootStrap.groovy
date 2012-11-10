@@ -4,8 +4,8 @@ class BootStrap {
 	def init = { servletContext ->
 		createCyrillicAlphabet()
 		createAmharicAbugida()
-		createDemoGameAndSesh()
 		createUsers()
+		createDemoGameAndSesh()
 		createSmallDeckAndGame()
 	}
 	def destroy = {
@@ -19,6 +19,7 @@ class BootStrap {
 		def bob = new User(username:'bob', password:'secret', enabled:true).save(flush:true, failOnError:true)
 		def userRole = new Role(authority:'ROLE_USER').save(flush:true, failOnError:true)
 		UserRole.create(bob, userRole)
+	}
 
 	def createSmallDeckAndGame() {
 		def deck = new Deck(name:'Captial Cities').save(failOnError:true, flush:true)
@@ -28,7 +29,7 @@ class BootStrap {
 		}
 		deck.save(flus:true, failOnError:true)
 		def game = new Game(deck:deck).save(failOnError:true, flush: true)
-		def sesh = new Sesh(game: game, complete: false, cards: game.deck.cards).save(flush: true, failOnError: true)
+		User.findByUsername("bob").addToSeshs(new Sesh(game: game, complete: false, cards: game.deck.cards)).save(flush: true, failOnError: true)
 	}
 
 	def createAmharicAbugida() {

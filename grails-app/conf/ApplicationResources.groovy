@@ -1,5 +1,4 @@
 modules = {
-<<<<<<< HEAD
     application {
         resource url:'js/application.js'
     }
@@ -7,10 +6,3 @@ modules = {
     	dependsOn "jquery"
     }
 }
-=======
-	application {
-		resource url:'js/application.js'
-	}
-}
-
->>>>>>> CARD-7
