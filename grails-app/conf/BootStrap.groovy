@@ -19,6 +19,7 @@ class BootStrap {
 		def bob = new User(username:'bob', password:'secret', enabled:true).save(flush:true, failOnError:true)
 		def userRole = new Role(authority:'ROLE_USER').save(flush:true, failOnError:true)
 		UserRole.create(bob, userRole)
+	}
 
 	def createSmallDeckAndGame() {
 		def deck = new Deck(name:'Captial Cities').save(failOnError:true, flush:true)

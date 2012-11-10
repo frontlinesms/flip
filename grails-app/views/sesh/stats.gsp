@@ -11,6 +11,12 @@
 			<h2>You rock (or not) you got ${totalCorrect} out of ${total}</h2>
 		</div>
 		<div id="controls">
+			<div>
+				Rate the Deck: 
+				<g:each in="${(1..5)}" var="rate">
+					<g:remoteLink controller="deck" action="rateDeck" params="${[id: seshInstance.id, rating:rate]}">${rate}</g:remoteLink>
+				</g:each>
+			</div>
 			<g:link action="restart" params="${[id: seshInstance.id]}">Try again!</g:link>
 		</div>
 	</body>

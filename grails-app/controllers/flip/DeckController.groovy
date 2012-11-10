@@ -145,10 +145,13 @@ println "contentType: $contentType"
 
 	def rateDeck(){
 		if(params.rating){
-			def deck = Deck.get(params.deckId)
-			deck.rating = ((deck.rating * deck.voteCount) + params.rating) / (deck.voteCount + 1)
-			deck.voteCount += 1
+			def deck = Deck.get(params.id)
+			deck.rating = (((deck.rating * deck.voteCount) + (params.rating as Integer)) / (deck.voteCount + 1)) as Integer
+			deck.voteCount = deck.voteCount + 1
 			deck.save(failOnError:true)
+			println "## Rating ###  ${deck.rating}"
+			println "## VoteCount ###  ${deck.voteCount}"
+			render text:"${deck.rating}"
 		}
 	}
 }
