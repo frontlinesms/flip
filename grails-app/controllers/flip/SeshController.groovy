@@ -7,10 +7,13 @@ class SeshController {
 		redirect(action: 'nxt', params: params)
 	}
 
+	def restart() {
+		def newSesh = new Sesh(game: Sesh.get(params.id).game, complete:false, cards: Sesh.get(params.id).game.deck.cards).save(failOnError:true, flush:true)
+		redirect(action: 'nxt', params:[id: newSesh.id])
+	}
+
 	def nxt() {
-		println "params::: ${params}"
 		def seshInstance = Sesh.get(params.id)
-		println "sesh Instance is $seshInstance"
 		if (params.lastPos) {
 			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
 			seshInstance.pos = seshInstance.pos + 1
