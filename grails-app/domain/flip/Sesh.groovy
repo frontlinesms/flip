@@ -5,10 +5,14 @@ class Sesh {
 	static hasMany = [cards: Card, ansas: Ansa]
     List cards
     List ansas
-    int pos
+    int pos = 0
     boolean complete
 
     def nextCard() {
+    	return cards[pos]
+    }
+
+    def getCardAt(int pos) {
     	return cards[pos]
     }
 }
