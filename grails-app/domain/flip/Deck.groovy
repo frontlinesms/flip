@@ -5,4 +5,6 @@ class Deck implements Taggable{
 	static searchable = true
 	String name
 	static hasMany = [cards:Card]
+
+	String toString() { "DECK[$name]" }
 }

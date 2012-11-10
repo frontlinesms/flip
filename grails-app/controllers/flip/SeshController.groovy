@@ -7,19 +7,38 @@ class SeshController {
 		redirect(action: 'nxt', params: params)
 	}
 
+	def restart() {
+		def sesh = Sesh.get(params.id)
+		def cards
+		if (params.incorrectOnly) {
+			cards = sesh.incorrectCards()
+		} else {
+			cards = sesh.game.cards
+		}
+		def newSesh = new Sesh(game:sesh.game, complete:false, cards:cards).save(failOnError:true, flush:true)
+		redirect(action:'nxt', params:[id:newSesh.id])
+	}
+
 	def nxt() {
-		println "params::: ${params}"
-		def seshInstance = Sesh.get(params.seshId)
-		println "sesh Instance is $seshInstance"
+		def seshInstance = Sesh.get(params.id)
 		if (params.lastPos) {
-			//seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos), correct: params.lastAnsa == "true"))
-			// TODO: uncomment and fix above when stats are needed
+			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
 			seshInstance.pos = seshInstance.pos + 1
 		}
 		else
 			seshInstance.pos = 0
 		seshInstance.save(failOnError: true)
-		render view:"play", model:[card: seshInstance.nextCard(), sesh: seshInstance]
+		if(seshInstance.detectCompletion())
+			redirect(action: 'stats', params:[id: seshInstance.id])
+		else
+			render view:"play", model:[card: seshInstance.nextCard(), sesh: seshInstance]
 	}
 
+	def stats() {
+		def seshInstance = Sesh.get(params.id)
+		def total = seshInstance ? seshInstance.ansas.size() : null
+		def totalCorrect = seshInstance?.correctCount()
+		render(view:"stats.gsp", model: [sesh: seshInstance, total: total, totalCorrect: totalCorrect])
+	}
 }
+

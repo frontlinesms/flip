@@ -12,7 +12,19 @@ class Sesh {
     	return cards[pos]
     }
 
-    def getCardAt(pos) {
+    def getCardAt(int pos) {
     	return cards[pos]
+    }
+
+    def detectCompletion() {
+        return pos >= (cards.size())
+    }
+
+    def incorrectCards() {
+        return ansas.findAll { !it.correct }.card
+    }
+    
+    def correctCount() {
+    	return ansas.findAll { it.correct }.size()
     }
 }

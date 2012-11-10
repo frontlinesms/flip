@@ -9,18 +9,18 @@
 	<body>
 		<div id="game">
 			<div id="current_card">
-				<span id="card_a">${card.a}</span>
-				<span id="card_b" style="display:none">${card.b}</span>
+				<span id="card_a">${card.a.cardHtml}</span>
+				<span id="card_b" style="display:none">${card.b.cardHtml}</span>
 			</div>
 			<div id="quest_controls">
 				<a href="#" id="flip_button">flip</a>
 			</div>
 			<div id="ans_controls" style="display:none">
-				<g:link controller="sesh" action="nxt" params="${[lastAns:'true', lastPos:sesh.pos, seshId:sesh.id]}">:-)</g:link>
-				<g:link controller="sesh" action="nxt" params="${[lastAns:'false', lastPos:sesh.pos, seshId:sesh.id]}">:-(</g:link>
+				<g:link controller="sesh" action="nxt" params="${[lastAnsa:true, lastPos:sesh.pos, id:sesh.id]}">:-)</g:link>
+				<g:link controller="sesh" action="nxt" params="${[lastAnsa:false, lastPos:sesh.pos, id:sesh.id]}">:-(</g:link>
 			</div>
 			<div id="debug">
-				${sesh} : ${sesh.id}
+				${sesh.ansas}
 			</div>
 		</div>
 	</body>
