@@ -2,12 +2,35 @@ import flip.*
 
 class BootStrap {
 	def init = { servletContext ->
+		addStringMetaclassMethods()
+
 		createCyrillicAlphabet()
 		createAmharicAbugida()
+		createMisterMenDeck()
 		createDemoGameAndSesh()
+		createUsers()
 		createSmallDeckAndGame()
 	}
 	def destroy = {
+	}
+
+	def createMisterMenDeck() {
+		def d = new Deck(name:'Mister Men')
+		d.addToCards(a:'http://img.thesun.co.uk/multimedia/archive/01165/SNF16HHH-280_1165033a.jpg', b:'Mr. Happy')
+		d.addToCards(a:'http://images3.wikia.nocookie.net/__cb20090826034654/mrmen/images/8/8d/MrTickle-1-.gif', b:'Mr. Tickle')
+		d.addToCards(a:'https://si0.twimg.com/profile_images/1012178433/MrTall_bigger.gif', b:'Mr. Tall')
+		d.addToCards(a:'http://www.themistermen.co.uk/images/mrmen_uk/small.gif', b:'Mr. Small')
+		d.save(flush:true, failOnError:true)
+	}
+
+	def createUsers() {
+		def alf = new User(username:'alf', password:'secret', enabled:true).save(flush:true, failOnError:true)
+		def adminRole = new Role(authority:'ROLE_ADMIN').save(flush:true, failOnError:true)
+		UserRole.create(alf, adminRole)
+
+		def bob = new User(username:'bob', password:'secret', enabled:true).save(flush:true, failOnError:true)
+		def userRole = new Role(authority:'ROLE_USER').save(flush:true, failOnError:true)
+		UserRole.create(bob, userRole)
 	}
 
 	def createSmallDeckAndGame() {
@@ -122,4 +145,16 @@ class BootStrap {
 		def game = new Game(deck: Deck.findByName('Cyrillic Alphabet')).save(flush: true, failOnError: true)
 		def sesh = new Sesh(game: game, complete: false, cards: game.deck.cards).save(flush: true, failOnError: true)
 	}
+
+	def addStringMetaclassMethods() {
+		String.metaClass.getCardHtml = {
+			if((delegate.startsWith('http://') || delegate.startsWith('https://')) &&
+					(delegate.endsWith('.gif') || delegate.endsWith('.png') || delegate.endsWith('.jpg'))) {
+				return "<img src='$delegate'/>"
+			} else {
+				return delegate
+			}
+		}
+	}
 }
+

@@ -9,8 +9,8 @@
 	<body>
 		<div id="game">
 			<div id="current_card">
-				<span id="card_a">${card.a}</span>
-				<span id="card_b" style="display:none">${card.b}</span>
+				<span id="card_a">${card.a.cardHtml}</span>
+				<span id="card_b" style="display:none">${card.b.cardHtml}</span>
 			</div>
 			<div id="quest_controls">
 				<a href="#" id="flip_button">flip</a>

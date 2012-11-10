@@ -10,19 +10,17 @@ class SeshController {
 	def restart() {
 		def sesh = Sesh.get(params.id)
 		def cards
-		if (params.incorrectOnly)
+		if (params.incorrectOnly) {
 			cards = sesh.incorrectCards()
-		else 
-			cards = sesh.game.deck.cards
-		println cards
-		def newSesh = new Sesh(game: sesh.game, complete:false, cards: cards).save(failOnError:true, flush:true)
-		redirect(action: 'nxt', params:[id: newSesh.id])
+		} else {
+			cards = sesh.game.cards
+		}
+		def newSesh = new Sesh(game:sesh.game, complete:false, cards:cards).save(failOnError:true, flush:true)
+		redirect(action:'nxt', params:[id:newSesh.id])
 	}
 
 	def nxt() {
-		println "params::: ${params}"
 		def seshInstance = Sesh.get(params.id)
-		println "sesh Instance is $seshInstance"
 		if (params.lastPos) {
 			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
 			seshInstance.pos = seshInstance.pos + 1
@@ -43,3 +41,4 @@ class SeshController {
 		render(view:"stats.gsp", model: [sesh: seshInstance, total: total, totalCorrect: totalCorrect])
 	}
 }
+
