@@ -35,12 +35,7 @@ class BootStrap {
 	}
 
 	def createSmallDeckAndGame() {
-		def deck = new Deck(name:'Captial Cities').save(failOnError:true, flush:true)
-		['capital of Latvia': 'Riga',
-		'capital of Eritrea': 'Asmara'].each { k, v->
-			deck.addToCards(new Card(a:k, b:v))
-		}
-		deck.save(flus:true, failOnError:true)
+		def deck = Deck.findByName("Mister Men")
 		def game = new Game(deck:deck).save(failOnError:true, flush: true)
 		User.findByUsername("bob").addToSeshs(new Sesh(game: game, complete: false, cards: game.cards)).save(flush: true, failOnError: true)
 	}
