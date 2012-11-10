@@ -95,9 +95,15 @@ class BootStrap {
 			cards << new Card(a:k[1], b:v, tags:['cyrillic (lower-case)->latin', 'cyrillic']).save(failOnError:true)
 		}
 
-		def deck = new Deck(name:'Cyrillic Alphabet')
+		def deck = new Deck(name:'Cyrillic Alphabet').save(flush:true, failOnError:true)
+		deck.addTag('language')
 		cards.each { deck.addToCards(it) }
 		deck.save(flush:true, failOnError:true)
+
+		def d1 = new Deck(name:'Anatomy of Paper').save(failOnError:true, flush:true)
+		d1.addTag('medicine').save(failOnError:true, flush:true)
+		def d2 = new Deck(name:'Groovy Syntax').save(failOnError:true, flush:true)
+		d2.addTag('coding').save(failOnError:true, flush:true)
 	}
 
 	def createDemoGameAndSesh() {

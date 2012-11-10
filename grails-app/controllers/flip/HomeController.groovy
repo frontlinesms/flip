@@ -2,7 +2,7 @@ package flip
 
 class HomeController{
 	def index(){
-		def dataModel = [tags:['Maths','Medicine','Language', 'Chinese', 'Eglish'], popularTags:['Maths','Arabic']]
+		def dataModel = [tags: Deck.allTags, popularTags: Deck.allTags]
 		render view:'/home/index', model:dataModel
 	}
 }

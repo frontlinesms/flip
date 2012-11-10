@@ -1,6 +1,7 @@
 package flip
+import org.grails.taggable.*
 
-class Card {
+class Card implements Taggable{
 	String a
 	String b
 }
