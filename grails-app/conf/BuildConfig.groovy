@@ -37,9 +37,13 @@ grails.project.dependency.resolution = {
     }
 
 	plugins {
-		runtime ":hibernate:$grailsVersion"
-		runtime ":jquery:1.7.1"
-		runtime ":resources:1.1.6"
+		compile ":hibernate:$grailsVersion"
+		compile ":jquery:1.8.2"
+		compile ":jquery-ui:1.8.24"
+		compile ":famfamfam:1.0"
+		compile ":resources:1.1.6"
+
+		compile ':mail:1.0.1'
 
 		// Uncomment these (or add new ones) to enable additional resources capabilities
 		//runtime ":zipped-resources:1.0"
@@ -49,6 +53,7 @@ grails.project.dependency.resolution = {
 		build ":tomcat:$grailsVersion"
 
 		compile ':spring-security-core:1.2.7.3'
+		compile ':spring-security-ui:0.2'
 	}
 }
 

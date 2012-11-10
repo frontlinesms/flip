@@ -96,3 +96,6 @@ log4j = {
 grails.plugins.springsecurity.userLookup.userDomainClassName = 'flip.User'
 grails.plugins.springsecurity.userLookup.authorityJoinClassName = 'flip.UserRole'
 grails.plugins.springsecurity.authority.className = 'flip.Role'
+grails.plugins.springsecurity.ui.encodePassword = false
+grails.plugins.springsecurity.roleHierarchy = 'ROLE_ADMIN > ROLE_USER'
+
