@@ -57,7 +57,7 @@ $(function() {
 	    } );
 	});
 	$("#browse").live("click", function() { window.location = "browse"; })
-	$("#sneak-peek").live("click", function() { window.location = "browse/playDeck/1"; })
+	$("#sneak-peek").live("click", function() { window.location = "game/splash/1"; })
 })
 </r:script>
 </html>

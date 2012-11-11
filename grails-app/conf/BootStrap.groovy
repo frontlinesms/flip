@@ -162,12 +162,12 @@ class BootStrap {
 		cards.each { deck.addToCards(it) }
 		deck.save(flush:true, failOnError:true)
 
-		def d1 = new Deck(name:'Anatomy of Paper').save(failOnError:true, flush:true)
-		d1.setTags(['medicine','anatomy','human body'])
-		d1.save(failOnError:true, flush:true)
-		def d2 = new Deck(name:'Groovy Syntax').save(failOnError:true, flush:true)
-		d2.setTags(['coding','groovy','grails','java','grails48'])
-		d2.save(failOnError:true, flush:true)
+//		def d1 = new Deck(name:'Anatomy of Paper').save(failOnError:true, flush:true)
+//		d1.setTags(['medicine','anatomy','human body'])
+//		d1.save(failOnError:true, flush:true)
+//		def d2 = new Deck(name:'Groovy Syntax').save(failOnError:true, flush:true)
+//		d2.setTags(['coding','groovy','grails','java','grails48'])
+//		d2.save(failOnError:true, flush:true)
 	}
 
 	def createDemoGameAndSesh() {
