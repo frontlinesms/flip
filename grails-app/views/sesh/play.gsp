@@ -8,17 +8,24 @@
 	</head>
 	<body>
 		<div id="game">
-			<div id="current_card">
-				<span id="card_a">${card.a.cardHtml}</span>
-				<span id="card_b" style="display:none">${card.b.cardHtml}</span>
-			</div>
-			<div id="quest_controls">
-				<a href="#" id="flip_button">flip</a>
-			</div>
-			<div id="ans_controls" style="display:none">
-				<g:link class="next_right" controller="sesh" action="nxt" params="${[lastAnsa:true, lastPos:sesh.pos, id:sesh.id]}">:-)</g:link>
-				<g:link class="next_wrong" controller="sesh" action="nxt" params="${[lastAnsa:false, lastPos:sesh.pos, id:sesh.id]}">:-(</g:link>
-			</div>
+			<div class='container thirteen columns offset-by-four island'>
+	            <div class='flashcard row eight columns'>
+	                <p class='clue'>
+	                    ${card.a.cardHtml}
+	                </p>
+	                <p class='answer'>
+	                    ${card.b.cardHtml}
+	                </p>
+	            </div>
+	            <br class='clear'/>
+	            <div class='row eight columns buttons'>
+	                <a class='button-std flipper' href='#' id="flip_button">Flip</a>
+					<div id="ans_controls" style="display:none" class='choosers'>
+						<g:link href='#' class="next_right button-std chooser correct" controller="sesh" action="nxt" params="${[lastAnsa:true, lastPos:sesh.pos, id:sesh.id]}">Hit</g:link>
+						<g:link href='#' class="next_wrong button-std chooser incorrect" controller="sesh" action="nxt" params="${[lastAnsa:false, lastPos:sesh.pos, id:sesh.id]}">Miss</g:link>
+					</div>
+	            </div>
+	        </div>
 			<div id="debug">
 				You can use 'F' to flip, 'J' for :-) and 'K' for :-(
 			</div>

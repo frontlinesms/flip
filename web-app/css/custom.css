@@ -23,7 +23,7 @@ body {
 }
 
 .flashcard {
-    background-image: url('/images/strip.png') !important;
+    background-image: url('../images/strip.png') !important;
     background-position: 0 -2px;
     border-style: solid;
     background-color: #fff;
@@ -96,12 +96,12 @@ div.choosers {
     display: none;
 }
 
-#correct {
+.correct {
     margin-right: 25px;
     background-color: #fddc23; 
 }
 
-#incorrect {
+.incorrect {
     color: #000;
     background-color: #fff;
 }
