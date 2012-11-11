@@ -48,5 +48,16 @@ class SeshController {
 		def totalCorrect = seshInstance?.correctCount()
 		render(view:"stats.gsp", model: [sesh: seshInstance, total: total, totalCorrect: totalCorrect])
 	}
+
+	def rateGame() {
+		if(params.rating) {
+			println "#### Params ## $params.rating"
+			def sesh = Sesh.get(params.id)
+			sesh.game.rate(params.rating as Integer)
+			sesh.refresh()
+			println "### $sesh.game.rating"
+			render text:"Rate : ${Math.floor(sesh.game.rating + 0.5f)}"
+		}
+	}
 }
 

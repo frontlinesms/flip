@@ -4,6 +4,7 @@ modules = {
 	}
 	flip {
 		dependsOn "jquery"
+		resource url:[dir:'js', file:"jquery.hotkeys.js"], disposition: "head"
 	}
 }
 
