@@ -194,11 +194,11 @@ div#intro {
 }
 div.card p {
     position:absolute;
-    top:40%;
+    top:25%;
     width:100%;
     font-size: 2.0em;
     text-align: center;
-    line-height: 1em;
+    line-height: 1.2em;
 }
 div.card {
     position:absolute;
@@ -220,23 +220,25 @@ div.card {
 }
 
 div#home_buttons {
-    padding-top:20px;
     margin-top:10px;
     float:center;
     text-align: center;
     width:100%;
+    padding-top: 5px;
 }
 #browse {
     background-color: #fddc23;
     width:200px;
     height:50px;
     margin:50px;
+    font-size: 18px;
 }
 #sneak-peek {
     width:200px;
     height:50px;
     margin:50px;
     background-color: #b5e611;
+    font-size: 18px;
 }
 
 div.footer{

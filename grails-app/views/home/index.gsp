@@ -10,7 +10,7 @@
 			<div class="card"><p>Our range of user-submitted cards covers a wide range of topics</p></div>
 			<div class="card"><p>We keep track of your progress in your selected range of topics</p></div>
 			<div class="card"><p>FlippMe lets you learn by viewing and sharing flash cards</p></div>
-			<div class="card"><p>Weclome to FlippMe, flashcards from the future</p></div>
+			<div class="card"><p>Welcome to FlippMe, flashcards from the future</p></div>
 		</div>
 		<div id="home_buttons">
 			<button id="browse">Browse</button>
