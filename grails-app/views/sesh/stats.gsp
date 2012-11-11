@@ -1,4 +1,3 @@
-<%@ page import="flip.Sesh" %>
 <!doctype html>
 <html>
 	<head>
@@ -17,7 +16,11 @@
 					<g:remoteLink controller="deck" action="rateDeck" params="${[id: seshInstance.id, rating:rate]}">${rate}</g:remoteLink>
 				</g:each>
 			</div>
-			<g:link action="restart" params="${[id: seshInstance.id]}">Try again!</g:link>
+			<g:link action="restart" params="${[id:sesh.id]}">Try again!</g:link>
+			<g:if test="${totalCorrect!=total}">
+  	  			<g:link action="restart" params="${[incorrectOnly:true, id:sesh.id]}">Redo failed cards!</g:link>
+			</g:if>
 		</div>
 	</body>
 </html>
+

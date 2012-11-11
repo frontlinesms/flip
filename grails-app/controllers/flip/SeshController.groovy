@@ -11,19 +11,28 @@ class SeshController {
 	def restart() {
 		def sesh = Sesh.get(params.id)
 		def user = springSecurityService.currentUser
-		def newSesh = new Sesh(game:sesh.game, complete:false, cards:sesh.game.cards, user:user).save(failOnError:true, flush:true)
+
+		def cards
+		if (params.incorrectOnly) {
+			cards = sesh.incorrectCards()
+		} else {
+			cards = sesh.game.cards
+		}
+		def newSesh = new Sesh(game:sesh.game, complete:false, cards:cards).save(failOnError:true, flush:true)
 		redirect(action:'nxt', params:[id:newSesh.id])
 	}
 
 	def nxt() {
 		def seshInstance = Sesh.get(params.id)
 		if (params.lastPos) {
-			seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
+			def ansa = seshInstance.ansas.find { it.card ==  seshInstance.getCardAt(params.lastPos as int)}
+			if (ansa)
+				ansa.correct = params.lastAnsa
+			else
+				seshInstance.addToAnsas(new Ansa(card: seshInstance.getCardAt(params.lastPos as int), correct: params.lastAnsa))
 			seshInstance.pos = seshInstance.pos + 1
+			seshInstance.save(failOnError: true)
 		}
-		else
-			seshInstance.pos = 0
-		seshInstance.save(failOnError: true)
 		if(seshInstance.detectCompletion()) {
 			seshInstance.complete = true
 			seshInstance.save(failOnError:true)
@@ -36,7 +45,8 @@ class SeshController {
 	def stats() {
 		def seshInstance = Sesh.get(params.id)
 		def total = seshInstance ? seshInstance.ansas.size() : null
-		def totalCorrect = seshInstance?.correctCount
-		render(view:"stats.gsp", model: [seshInstance: seshInstance, total: total, totalCorrect: totalCorrect])
+		def totalCorrect = seshInstance?.correctCount()
+		render(view:"stats.gsp", model: [sesh: seshInstance, total: total, totalCorrect: totalCorrect])
 	}
 }
+

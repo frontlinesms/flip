@@ -1,10 +1,9 @@
-tmp
+# build
+target/
 web-app/WEB-INF/grails-app/
 
-# Auto-generated JS i18n bundles.
-web-app/i18n/
-
-target/
-
+# temp files
+*~
 *.swp
 *.orig
+tmp
