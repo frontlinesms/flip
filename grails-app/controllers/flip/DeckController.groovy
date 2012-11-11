@@ -5,6 +5,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import  org.apache.poi.ss.usermodel.*
 
 class DeckController {
+    def springSecurityService
 	def scaffold = true
 
 	static final def DECK_COLUMN_MAP = [
@@ -68,6 +69,10 @@ class DeckController {
             render(view: "create", model: [deckInstance: deckInstance])
             return
         }
+        
+        def user = springSecurityService.currentUser
+        if (user)
+            user.addToDecks(deckInstance).save(flush:true, failOnError:true)
 
 		flash.message = message(code: 'default.created.message', args: [message(code: 'deck.label', default: 'Deck'), deckInstance.id])
         redirect(action: "show", id: deckInstance.id)
