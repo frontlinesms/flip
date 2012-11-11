@@ -1,4 +1,3 @@
-<%@ page import="flip.Sesh" %>
 <!doctype html>
 <html>
 	<head>
