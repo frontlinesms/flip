@@ -1,11 +1,14 @@
 <div>
-	Search Section ### Should Probably display Search TextField Here
+	<g:render template="/browse/searchform"/>
 </div>
 <div>
 	<g:link controller="browse">All Tags</g:link>
 	<g:each in="${allTagKeys}" var="key">
 		<g:link controller="browse" action="tagsFor" params="${[key:key]}">${key.toUpperCase()}</g:link>
 	</g:each>
+</div>
+<div>
+	<g:render template="/browse/searchresults"/>
 </div>
 <div>
 	<g:if test="${tagKeyHeader}">
