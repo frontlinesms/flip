@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<div id="game">
-			<div class='container thirteen columns offset-by-four island'>
+			<div class='container twelve columns offset-by-four island'>
 	            <div class='flashcard row eight columns'>
 	                <p class='clue'>
 	                    ${card.a.cardHtml}

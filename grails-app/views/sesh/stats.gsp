@@ -6,7 +6,7 @@
 		<title><g:message code="default.create.label" args="[entityName]" /></title>
 	</head>
 	<body>
-		<div class="container thirteen columns offset-by-four">
+		<div class="container twelve columns offset-by-four">
 			<div class="row eight columns">
 				<h3>You rock (or not) you got ${totalCorrect} out of ${total}</h3>
 				<div id='score'>
