@@ -4,17 +4,21 @@ class BootStrap {
 	def r = new Random()
 
 	def init = { servletContext ->
-		addStringMetaclassMethods()
-		addIntegerMetaclassMethods()
+		try {
+			addStringMetaclassMethods()
+			addIntegerMetaclassMethods()
 
-		createCyrillicAlphabet()
-		createAmharicAbugida()
-		createMisterMenDeck()
-		createDemoGameAndSesh()
-		createUsers()
-		createDemoGameAndSesh()
-		createSmallDeckAndGame()
-		createUserWithLotsOfHistory()
+			createCyrillicAlphabet()
+			createAmharicAbugida()
+			createMisterMenDeck()
+			createDemoGameAndSesh()
+			createUsers()
+			createDemoGameAndSesh()
+			createSmallDeckAndGame()
+			createUserWithLotsOfHistory()
+		} catch(Exception ex) {
+			log.warn("Error thrown in bootstrap.", ex)
+		}
 	}
 
 	def destroy = {

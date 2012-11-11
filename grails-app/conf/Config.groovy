@@ -78,6 +78,17 @@ log4j = {
     //appenders {
     //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
     //}
+	appenders {
+		'null' name:'stacktrace'
+		console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+	}
+
+	root {
+		debug 'stdout'
+		additivity = true
+	}
+/*
+	info 'org.apache.catalina.core.ContainerBase.[Catalina]'
 
     error  'org.codehaus.groovy.grails.web.servlet',  //  controllers
            'org.codehaus.groovy.grails.web.pages', //  GSP
@@ -89,7 +100,7 @@ log4j = {
            'org.codehaus.groovy.grails.orm.hibernate', // hibernate integration
            'org.springframework',
            'org.hibernate',
-           'net.sf.ehcache.hibernate'
+           'net.sf.ehcache.hibernate'*/
 }
 
 // Added by the Spring Security Core plugin:

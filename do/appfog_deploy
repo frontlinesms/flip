@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+APPNAME=flippme
+
+echo "# Checking appfog ruby gem ('af') is installed..."
+echo "# If this fails, run: sudo gem install af"
+af help | head -n 1
+echo "# appfog gem is present."
+
+echo "# Checking appfog login status..."
+APPFOG_USER=`af info | grep "^User:"`
+if [ "$APPFOG_USER" -eq "" ]; then
+	echo "# logging in to appfog..."
+	af login
+else
+	echo "# Logged in to appfog as $APPFOG_USER"
+fi
+
+echo "# building war..."
+grails clean
+grails prod war
+
+pushd target
+echo "# uploading to appfog..."
+af update $APPNAME
+
