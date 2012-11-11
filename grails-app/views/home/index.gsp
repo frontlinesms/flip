@@ -19,11 +19,19 @@
 		<div display:"none">
 			<div>
 				<h2>Categories</h2>
-				${tags}
+				<g:each in="${tags}" var="t">
+					<span class="tag-value">
+						<g:link controller="browse" action="decks" params="${[tag:t]}">${t}</g:link>
+					</span>
+				</g:each>
 			</div>
 			<div>
 				<h2>Popular</h2>
-				${popularTags}
+				<g:each in="${popularTags}" var="t">
+					<span class="tag-value">
+						<g:link controller="browse" action="decks" params="${[tag:t]}">${t}</g:link>
+					</span>
+				</g:each>
 			</div>
 		</div>
 	</body>

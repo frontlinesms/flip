@@ -53,5 +53,8 @@
     </div>
     <g:javascript library="application"/>
 	<r:layoutResources />
+	<div class="footer">
+		
+	</div>
 </body>
 </html>

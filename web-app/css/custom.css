@@ -56,6 +56,10 @@ body {
     text-align: center;
 }
 
+.flashcard p.clue img{
+    max-height: 200px;
+}
+
 .flashcard p.answer {
     display: none;
 }
@@ -194,6 +198,7 @@ div.card p {
     width:100%;
     font-size: 2.0em;
     text-align: center;
+    line-height: 1em;
 }
 div.card {
     position:absolute;
@@ -215,7 +220,7 @@ div.card {
 }
 
 div#home_buttons {
-    padding-top:40px;
+    padding-top:20px;
     margin-top:10px;
     float:center;
     text-align: center;
@@ -234,3 +239,6 @@ div#home_buttons {
     background-color: #b5e611;
 }
 
+div.footer{
+    height:20px;
+}
