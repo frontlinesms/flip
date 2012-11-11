@@ -5,7 +5,7 @@
 		<g:set var="entityName" value="${message(code: 'game.label', default: 'Game')}" />
 		<title>Start a new game</title>
 	</head>
-		<div class='container thirteen columns offset-by-four island'>
+		<div class='container twelve columns offset-by-four island'>
 	            <div class='flashcard row eight columns'>
 			<p>
 				${gameInstance.name}<br/>

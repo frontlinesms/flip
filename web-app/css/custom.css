@@ -5,6 +5,7 @@ body {
 
 #header {
     margin-bottom: 15px;
+    margin-left:10px;
 }
 
 #logo {
@@ -20,6 +21,7 @@ body {
     padding-top: 30px;
     min-height: 350px;
     border-radius: 3px;
+    margin-left:0; margin-right:0;
 }
 
 .flashcard {
