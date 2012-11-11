@@ -1,6 +1,7 @@
 body {
     background-color: #f7f7f7;
     font-family: Asap;
+    margin:0;
 }
 
 #header {
@@ -188,7 +189,7 @@ li.deck-item:hover{
 div#intro {
     background-color: #b5e611;
     padding:10px;
-    padding-top:40px;
+    padding-top:50px;
     height:250px;
     border-bottom:5px solid black;
 }
@@ -215,7 +216,7 @@ div.card {
     width:123px;
     height:120px;
     position:absolute;
-    top:15%;
+    top:18%;
     right:10%;
 }
 
@@ -243,4 +244,14 @@ div#home_buttons {
 
 div.footer{
     height:20px;
+}
+
+div#grailsfourtyeight {
+    position:absolute;
+    width:150px;
+    height:156px;
+    top:0;
+    right:0;
+    padding:0;
+    margin:0;    
 }

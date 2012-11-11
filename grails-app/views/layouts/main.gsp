@@ -4,7 +4,6 @@
 <!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
 <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-
 	<!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
@@ -42,19 +41,26 @@
 	<g:layoutHead/>
     <r:layoutResources />
 </head>
-<body class='container offset-by-four'>
-    <div class='container sixteen columns' id='header'>
-        <g:link controller="home">
-	        <img src="${resource(dir: 'images', file: 'flippme.png')}" id='logo'/>
-        </g:link>
-    </div>
-    <div class='container sixteen columns'>
-        <g:layoutBody/>
-    </div>
-    <g:javascript library="application"/>
-	<r:layoutResources />
-	<div class="footer">
-		
+<body>
+	<div id="full_body_wrap" class='container offset-by-four'>
+	    <div class='container sixteen columns' id='header'>
+	        <g:link controller="home">
+		        <img src="${resource(dir: 'images', file: 'flippme.png')}" id='logo'/>
+	        </g:link>
+	    </div>
+	    <div class='container sixteen columns'>
+	        <g:layoutBody/>
+	    </div>
+	    <g:javascript library="application"/>
+		<r:layoutResources />
+		<div class="footer">
+			
+		</div>
+	</div>
+	<div id="grailsfourtyeight">
+		<a href="http://www.youtube.com/watch?v=ozimhwJDqco">
+			<img src="${resource(dir: 'images', file: 'grails48.png')}"/>
+		</a>
 	</div>
 </body>
 </html>
