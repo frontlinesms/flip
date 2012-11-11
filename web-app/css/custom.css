@@ -1,0 +1,108 @@
+body {
+    background-color: #f7f7f7;
+    font-family: Asap;
+}
+
+#header {
+    margin-bottom: 15px;
+}
+
+#logo {
+    display: block;
+    margin:15px auto;
+    width: 20%; 
+    height: auto;
+}
+
+.island{
+    font-size: 1.3em;
+    background-color: #b5e611;
+    padding-top: 30px;
+    min-height: 350px;
+    border-radius: 3px;
+}
+
+.flashcard {
+    background-image: url('/images/strip.png') !important;
+    background-position: 0 -2px;
+    border-style: solid;
+    background-color: #fff;
+    max-height: 260px;
+    min-height: 260px;
+    padding: 0;
+    border: 1px solid #aaa;
+    box-shadow: 3px 5px 15px #83a70c;
+}
+
+.flashcard.no-chrome{
+    background-image: none !important;
+    background-position: 0 -2px !important;
+    border-color: transparent;
+    box-shadow: none;
+}
+.flashcard p {
+    background-image: url('/images/strip.png');
+    background-position: 0 -2px;
+    background-repeat: repeat-x;
+    padding: 1.2em;
+    line-height: 1.2em;
+    font-size: 2em;
+    text-align: center;
+    max-height: 264px;
+    margin-top: 0;
+}
+
+.flashcard p.clue {
+    text-align: center;
+}
+
+.flashcard p.answer {
+    display: none;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.button-std {
+    display: inline-block;
+    padding: 0.8em;
+    color: #fff;
+    background-color: #b5e611;
+    text-decoration: none;
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.button-std:hover {
+    box-shadow: inset 0 2px 2px #ccc;
+}
+
+.button-std:hover, .button-std:visited {
+    color: #fff;
+}
+
+div.choosers {
+    margin:0 auto;
+}
+
+.button-std.flipper {
+    background-color: #fff;
+    color: #000;
+}
+
+.button-std.chooser {
+    display: none;
+}
+
+#correct {
+    margin-right: 25px;
+    background-color: #fddc23; 
+}
+
+#incorrect {
+    color: #000;
+    background-color: #fff;
+}
+/* b5e611 green fddc23 yellow f7f7f7 grey*/
