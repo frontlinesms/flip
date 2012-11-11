@@ -39,7 +39,11 @@ $(function() {
 		$("#card_b").show();
 		$("#ans_controls").show();
 	});
-	$(document).bind('keypress', 'f', function() { $("#flip_button").trigger("click") } );
+	$(document).bind('keypress', 'f', function() {
+		var button = $("#flip_button");
+		button.trigger("click");
+		button.remove();
+	} );
 	$(document).bind('keypress', 'j', function() {
 		if($("#ans_controls").css('display') != 'none')
 			window.location = $(".next_right").attr('href'); 
