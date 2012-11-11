@@ -4,6 +4,7 @@ import org.compass.core.engine.SearchEngineQueryParseException
 
 class BrowseController {
 	def searchableService
+	def springSecurityService
 
 	def index(){
 		render model:[tagMap: splitIntoAlphabet(Deck.allTags).sort(), allTagKeys:('a'..'z')], view:'/browse/index'
@@ -28,6 +29,13 @@ class BrowseController {
         } catch (SearchEngineQueryParseException ex) {
             render model:[parseException: true], view:'/browse/index'
         }
+    }
+
+    def playDeck(){
+    	def deck = Deck.get(params.id)
+    	def game = Game.findByDeck(deck)?:new Game(deck:deck).save(failOnError:true)
+    	def sesh = new Sesh(game:game, user:springSecurityService.currentUser, cards:game.cards).save(failOnError:true)
+    	redirect controller: "sesh", action: "start", params:[id:sesh.id]
     }
     
 	private splitIntoAlphabet(tags){

@@ -30,7 +30,7 @@
 	<g:if test="${decks}">
 		<p>Decks tagged : ${selectedTag}</p>
 		<g:each in="${decks}" var="deck">
-			<g:link controller="sesh" action="start" params="${[id:deck.id]}">${deck.name}</g:link>
+			<g:link controller="browse" action="playDeck" params="${[id:deck.id]}">${deck.name}</g:link>
 		</g:each>
 	</g:if>
 </div>
