@@ -44,9 +44,9 @@
 </head>
 <body class='container offset-by-four'>
     <div class='container sixteen columns' id='header'>
-    	<a href="/flip">
+        <g:link controller="home">
 	        <img src="${resource(dir: 'images', file: 'flippme.png')}" id='logo'/>
-	    </a>
+        </g:link>
     </div>
     <div class='container sixteen columns'>
         <g:layoutBody/>
