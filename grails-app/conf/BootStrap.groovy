@@ -1,6 +1,8 @@
 import flip.*
 
 class BootStrap {
+	def r = new Random()
+
 	def init = { servletContext ->
 		addStringMetaclassMethods()
 		addIntegerMetaclassMethods()
