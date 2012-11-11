@@ -59,6 +59,7 @@ grails.project.dependency.resolution = {
 		compile ":csv:0.3.1"
 
 		compile ":codenarc:0.17"
+		compile ":pretty-time:0.3"
 	}
 }
 

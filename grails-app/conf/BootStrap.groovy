@@ -3,6 +3,7 @@ import flip.*
 class BootStrap {
 	def init = { servletContext ->
 		addStringMetaclassMethods()
+		addIntegerMetaclassMethods()
 
 		createCyrillicAlphabet()
 		createAmharicAbugida()
@@ -11,8 +12,32 @@ class BootStrap {
 		createUsers()
 		createDemoGameAndSesh()
 		createSmallDeckAndGame()
+		createUserWithLotsOfHistory()
 	}
+
 	def destroy = {
+	}
+
+	def createUserWithLotsOfHistory() {
+		def chloe = new User(username:'chloe', password:'secret', enabled:true).save(flush:true, failOnError:true)
+		def userRole = Role.findOrSaveWhere(authority:'ROLE_USER')
+		UserRole.create(chloe, userRole)
+
+		// chloe should have 10 completed Seshs on Game 1, of increasing success and changing dates
+		def g = Game.get(1)
+		(1..10).each { i ->
+			def complete = i.even
+			def d = new Date() - i
+			new Sesh(game:g, complete:complete, user:chloe, date:d).save(flush:true, failOnError:true)
+		}
+
+		// chloe should have 7 completed Seshs on Game 2, of roughly increasing success and changing dates
+		g = Game.get(2)
+		(1..7).each { i ->
+			def complete = i.odd
+			def d = new Date() - (i * 3)
+			new Sesh(game:g, complete:complete, user:chloe, date:d).save(flush:true, failOnError:true)
+		}
 	}
 
 	def createMisterMenDeck() {
@@ -151,6 +176,13 @@ class BootStrap {
 				return delegate
 			}
 		}
+	}
+
+	def addIntegerMetaclassMethods() {
+		Integer.metaClass.isEven = {
+			delegate % 2 == 0
+		}
+		Integer.metaClass.isOdd = { !delegate.even }
 	}
 }
 

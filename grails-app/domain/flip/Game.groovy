@@ -6,5 +6,7 @@ class Game {
 	def getCards() {
 		return deck.cards
 	}
+
+	def getName() { deck.name }
 }
 
