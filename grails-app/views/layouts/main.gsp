@@ -8,7 +8,7 @@
 	<!-- Basic Page Needs
   ================================================== -->
 	<meta charset="utf-8">
-	<title>Flip</title>
+	<title>FlippMe</title>
 	<meta name="description" content="">
 	<meta name="author" content="">
 
