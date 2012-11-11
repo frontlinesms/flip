@@ -17,7 +17,7 @@
 				<div style="text-align:center">
 					<g:link class="button-std" action="restart" params="${[id:sesh.id]}">Try again!</g:link>
 					<g:if test="${totalCorrect!=total}">
-						<g:link class="button-std" action="restart" params="${[incorrectOnly:true, id:sesh.id]}">Redo failed cards!</g:link>
+						<g:link class="button-std alt" action="restart" params="${[incorrectOnly:true, id:sesh.id]}">Redo failed cards!</g:link>
 					</g:if>
 				</div>
 				<span id="game-rating">Rating : ${sesh.game.rating as Integer}</span><br>
