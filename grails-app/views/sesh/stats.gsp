@@ -11,9 +11,10 @@
 		</div>
 		<div id="controls">
 			<div>
+				<span id="game-rating">Rate : ${sesh.game.rating as Integer}</span>
 				Rate the Deck: 
 				<g:each in="${(1..5)}" var="rate">
-					<g:remoteLink controller="deck" action="rateDeck" params="${[id: seshInstance.id, rating:rate]}">${rate}</g:remoteLink>
+					<g:remoteLink controller="sesh" action="rateGame" params="${[id: sesh.id, rating:rate]}" onSuccess="updateRating(data)">${rate}</g:remoteLink>
 				</g:each>
 			</div>
 			<g:link action="restart" params="${[id:sesh.id]}">Try again!</g:link>
@@ -23,4 +24,9 @@
 		</div>
 	</body>
 </html>
+<r:script>
+function updateRating(data){
+	$('#game-rating').text(data);
+}
+</r:script>
 
