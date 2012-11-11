@@ -2,15 +2,19 @@ import flip.*
 
 class BootStrap {
 	def init = { servletContext ->
-		addStringMetaclassMethods()
+		try {
+			addStringMetaclassMethods()
 
-		createCyrillicAlphabet()
-		createAmharicAbugida()
-		createMisterMenDeck()
-		createDemoGameAndSesh()
-		createUsers()
-		createDemoGameAndSesh()
-		createSmallDeckAndGame()
+			createCyrillicAlphabet()
+			createAmharicAbugida()
+			createMisterMenDeck()
+			createDemoGameAndSesh()
+			createUsers()
+			createDemoGameAndSesh()
+			createSmallDeckAndGame()
+		} catch(Exception ex) {
+			log.warn("Error thrown in bootstrap.", ex)
+		}
 	}
 	def destroy = {
 	}

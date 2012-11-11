@@ -27,14 +27,24 @@ environments {
 	}
 	production {
 		def vcapServices = System.env.VCAP_SERVICES
+println("Read vcapServices: $vcapServices");
 		def credentials = vcapServices? grails.converters.JSON.parse(vcapServices)["mysql-5.1"][0]["credentials"]: null
+println("Database credentials: $credentials")
+		credentials = [
+			hostname:'localhost',
+			port:'3306',
+			name:'flip',
+			username:'flipper',
+			password:'thedolphin'
+		]
+
 		dataSource {
 			dbCreate = "update"
 			url =  credentials? "jdbc:mysql://${credentials.hostname}:${credentials.port}/${credentials.name}?useUnicode=yes&characterEncoding=UTF-8" :""
 			dialect = org.hibernate.dialect.MySQL5InnoDBDialect
 			driverClassName = "com.mysql.jdbc.Driver"
 			username = credentials? credentials.username: ""
-			password = credentails? credentials.password: ""
+			password = credentials? credentials.password: ""
 			pooled = true
 			properties {
 				maxActive = -1

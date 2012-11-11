@@ -18,7 +18,8 @@ else
 fi
 
 echo "# building war..."
-grails -Dfrontlinesms2.build.allowSnapshots=true war
+grails clean
+grails prod war
 
 pushd target
 echo "# uploading to appfog..."
