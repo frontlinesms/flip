@@ -1,4 +1,3 @@
-<%@ page import="flip.Sesh" %>
 <!doctype html>
 <html>
 	<head>
@@ -11,7 +10,11 @@
 			<h2>You rock (or not) you got ${totalCorrect} out of ${total}</h2>
 		</div>
 		<div id="controls">
-			<g:link action="restart" params="${[id: seshInstance.id]}">Try again!</g:link>
+			<g:link action="restart" params="${[id:sesh.id]}">Try again!</g:link>
+			<g:if test="${totalCorrect!=total}">
+  	  			<g:link action="restart" params="${[incorrectOnly:true, id:sesh.id]}">Redo failed cards!</g:link>
+			</g:if>
 		</div>
 	</body>
 </html>
+

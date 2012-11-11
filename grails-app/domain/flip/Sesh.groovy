@@ -28,5 +28,13 @@ class Sesh {
 	def getCorrectCount() {
 		return ansas.findAll { it.correct }.size()
 	}
+
+    def incorrectCards() {
+        return ansas.findAll { !it.correct }.card
+    }
+    
+    def correctCount() {
+    	return ansas.findAll { it.correct }.size()
+    }
 }
 
