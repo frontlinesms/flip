@@ -26,13 +26,43 @@ class DeckController {
     }
 
     def save() {
-        def deckInstance = new Deck(params)
+        println "PARAMS::: $params"
+        def deckInstance = Deck.get(params.id)?: new Deck()
+        deckInstance.name = params.name
 
-	if(params.cardFile) {
-		handleCardFileUpload(deckInstance)
-	}
+    	if(params.cardFile) {
+            // input is from uploaded deck
+    		handleCardFileUpload(deckInstance)
+    	}
+        else {
+            // input is from edit gsp, handle cards
+            def card_as = [params.card_a].flatten()
+            def card_bs = [params.card_b].flatten()
+            def card_ids = [params.card_id].flatten()
+            card_ids.eachWithIndex { cardId, index ->
+                def existingCard = cardId? Card.get(cardId) : null
+                if (existingCard && !(existingCard.a == card_as[index] && existingCard.b == card_bs[index])) { // the card has changed
+                    deckInstance.removeFromCards(existingCard)
+                    deckInstance.addToCards(new Card(a: card_as[index], b: card_bs[index]).save(failOnError:true))
+                }
+                else if (!existingCard) { // this is a new card
+                    deckInstance.addToCards(new Card(a: card_as[index], b: card_bs[index]).save(failOnError:true))
+                }
+                else {
+                    // the card hasn't changed
+                }
+            }
+            // delete removed cards
+            params.card_ids_to_delete.split(',').each { id ->
+                if(id) {
+                    println "removing $id from deck"
+                    println "deck.cards::: $deckInstance.cards"
+                    deckInstance.removeFromCards(deckInstance.cards.find { "$it.id" == id })
+                }
+            }
+        }
 
-        if (!deckInstance.save(flush: true)) {
+        if (!deckInstance.save(flush: true, failOnError: true)) {
             render(view: "create", model: [deckInstance: deckInstance])
             return
         }
@@ -54,13 +84,7 @@ class DeckController {
 
     def edit() {
         def deckInstance = Deck.get(params.id)
-        if (!deckInstance) {
-            flash.message = message(code: 'default.not.found.message', args: [message(code: 'deck.label', default: 'Deck'), params.id])
-            redirect(action: "list")
-            return
-        }
-
-        [deckInstance: deckInstance]
+        [deck: deckInstance]
     }
 
     def update() {
