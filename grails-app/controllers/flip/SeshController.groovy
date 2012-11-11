@@ -11,7 +11,14 @@ class SeshController {
 	def restart() {
 		def sesh = Sesh.get(params.id)
 		def user = springSecurityService.currentUser
-		def newSesh = new Sesh(game:sesh.game, complete:false, cards:sesh.game.cards, user:user).save(failOnError:true, flush:true)
+
+		def cards
+		if (params.incorrectOnly) {
+			cards = sesh.incorrectCards()
+		} else {
+			cards = sesh.game.cards
+		}
+		def newSesh = new Sesh(game:sesh.game, complete:false, cards:cards).save(failOnError:true, flush:true)
 		redirect(action:'nxt', params:[id:newSesh.id])
 	}
 
@@ -38,7 +45,19 @@ class SeshController {
 	def stats() {
 		def seshInstance = Sesh.get(params.id)
 		def total = seshInstance ? seshInstance.ansas.size() : null
-		def totalCorrect = seshInstance?.correctCount
-		render(view:"stats.gsp", model: [seshInstance: seshInstance, total: total, totalCorrect: totalCorrect])
+		def totalCorrect = seshInstance?.correctCount()
+		render(view:"stats.gsp", model: [sesh: seshInstance, total: total, totalCorrect: totalCorrect])
+	}
+
+	def rateGame() {
+		if(params.rating) {
+			println "#### Params ## $params.rating"
+			def sesh = Sesh.get(params.id)
+			sesh.game.rate(params.rating as Integer)
+			sesh.refresh()
+			println "### $sesh.game.rating"
+			render text:"Rate : ${Math.floor(sesh.game.rating + 0.5f)}"
+		}
 	}
 }
+
