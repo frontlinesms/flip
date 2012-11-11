@@ -5,6 +5,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import  org.apache.poi.ss.usermodel.*
 
 class DeckController {
+	def scaffold = true
+
 	static final def DECK_COLUMN_MAP = [
 			startRow:1,
 			columnMap:[A:'a', B:'b']]
