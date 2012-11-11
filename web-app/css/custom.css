@@ -207,11 +207,11 @@ div.card {
 }
 #next_button {
     background-image: url(../images/next.png);
-    width:121px;
-    height:94px;
+    width:123px;
+    height:120px;
     position:absolute;
-    top:25%;
-    right:15%;
+    top:15%;
+    right:10%;
 }
 
 div#home_buttons {
