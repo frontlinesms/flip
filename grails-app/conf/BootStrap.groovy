@@ -1,5 +1,7 @@
 import flip.*
 
+import grails.util.Environment
+
 class BootStrap {
 	def r = new Random()
 
@@ -8,14 +10,16 @@ class BootStrap {
 			addStringMetaclassMethods()
 			addIntegerMetaclassMethods()
 
-			createCyrillicAlphabet()
-			createAmharicAbugida()
-			createMisterMenDeck()
-			createDemoGameAndSesh()
-			createUsers()
-			createDemoGameAndSesh()
-			createSmallDeckAndGame()
-			createUserWithLotsOfHistory()
+			if(Environment.current == Environment.DEVELOPMENT) {
+				createCyrillicAlphabet()
+				createAmharicAbugida()
+				createMisterMenDeck()
+				createDemoGameAndSesh()
+				createUsers()
+				createDemoGameAndSesh()
+				createSmallDeckAndGame()
+				createUserWithLotsOfHistory()
+			}
 		} catch(Exception ex) {
 			log.warn("Error thrown in bootstrap.", ex)
 		}
