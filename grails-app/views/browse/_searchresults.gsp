@@ -1,10 +1,12 @@
 <g:if test="${searchResult?.results}">
     <div> Search String : ${searchString}</div>
-	<g:each in="${matchedDecks}" var="result">
-        <div>
-            <g:link controller="browse" action="playDeck" params="${[id:result.id]}">${result.name}</g:link>
-        </div>
-	</g:each>
+    <ul>
+    	<g:each in="${matchedDecks}" var="result">
+            <li class="deck-item">
+                <g:link controller="browse" action="playDeck" params="${[id:result.id]}">${result.name}</g:link>
+            </li>
+    	</g:each>
+    </ul>
 
     Page:
     <g:set var="totalPages" value="${Math.ceil(searchResult.total / searchResult.max)}" />

@@ -106,3 +106,77 @@ div.choosers {
     background-color: #fff;
 }
 /* b5e611 green fddc23 yellow f7f7f7 grey*/
+
+
+/* Browse page Css */
+#tag-navigation-bar{
+    background-color: black;
+    color:white;
+    padding:5px;
+}
+
+#tag-navigation-bar a{
+    padding:3px;
+    font-weight: bold;
+    font-size: 16px;
+    color:white;
+    text-decoration: none;
+}
+
+#tag-navigation-bar a:hover{
+    text-decoration: underline;
+}
+
+#tag-dictionary{
+
+}
+
+#tag-title{
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#dic-letter{
+    margin-bottom: 2px;
+}
+
+span.tag-value {
+    padding:3px;
+    background-color: white;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 3px;
+}
+
+span.tag-value:hover{
+    background-color:#d5e611;
+    color:white;
+}
+
+span.tag-value a {
+    text-decoration: none;
+}
+
+.inline-input{
+    display: inline !important;
+}
+
+#search{
+    margin-bottom: 3px;
+}
+
+li.deck-item{
+    padding: 3px;
+    background-color: white;
+    margin-bottom: 3px;
+
+}
+
+li.deck-item a{
+    text-decoration: none;
+}
+
+li.deck-item:hover{
+    background-color: #d5e611;
+    color:white;
+}
