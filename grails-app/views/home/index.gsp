@@ -31,7 +31,7 @@
 $(function() {
 	$('.card').each(function() {
 		var rand_no = Math.random();
-		rand_no = Math.floor(5 - (rand_no * 10));
+		rand_no = Math.floor(10 - (rand_no * 20));
 		console.log(rand_no);
 		$(this).css('-moz-transform', 'scale(1) rotate('+ rand_no +'deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg)');
 		$(this).css('-webkit-transform', 'scale(1) rotate('+ rand_no +'deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg)');
