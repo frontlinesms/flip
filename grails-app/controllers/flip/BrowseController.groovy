@@ -25,7 +25,16 @@ class BrowseController {
             render model:[allTagKeys:('a'..'z')], view:'/browse/index'
         }
         try {
-            render model:[allTagKeys:('a'..'z'), searchResult: searchableService.search(params.q, params), searchString:params.q], view:'/browse/index'
+        	def rawResults = searchableService.search(params.q, params)
+        	def matchedDecks = rawResults.results.collect{
+        		if(it instanceof flip.Deck){
+        			return it
+    			} else if (it instanceof org.grails.taggable.Tag){
+    				return Deck.findAllByTag(it.toString())
+    			}
+        	}
+        	matchedDecks = matchedDecks.flatten().unique({ it.id })
+            render model:[allTagKeys:('a'..'z'), searchResult: rawResults, matchedDecks:matchedDecks, searchString:params.q], view:'/browse/index'
         } catch (SearchEngineQueryParseException ex) {
             render model:[parseException: true], view:'/browse/index'
         }
