@@ -26,9 +26,9 @@ println "Rendering data table for attrs $attrs"
 					it.each { label, link ->
 						if(first) first = false
 						else out << ' | '
-						def params = link.size()>2? link[2]: []
+						def params = link.size()>3? link[3]: [:]
 println "Controller params for link generation: ${[controller:link[0], id:link[1], params:params]}"
-						out << g.link([controller:link[0], id:link[1], params:params]) {
+						out << g.link([controller:link[0], action:link[2], id:link[1], params:params]) {
 							g.message(code:"stats.game.action.$label")
 						}
 					}

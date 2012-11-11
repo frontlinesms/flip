@@ -6,7 +6,7 @@ class StatsService {
 
 	def getRecentGames(user) {
 		def values = Sesh.findAllByUser(user, SORT_PARAMS).collect { s ->
-			[s.game.name, s.lastUpdated, s.complete? s.correctPercentage: null, s.complete? [view:o(s), playagain:o(s.game)]: [continue:o(s)]]
+			[s.game.name, s.lastUpdated, s.complete? s.correctPercentage: null, s.complete? [view:o(s, 'start'), playagain:o(s.game, 'playDeck')]: [continue:o(s, 'start')]]
 		}
 		/* [
 			keys:['name', 'played', 'score'],
@@ -26,7 +26,7 @@ class StatsService {
 		def values = Sesh
 				.executeQuery('SELECT s.game.id, s.game.deck.name, COUNT(s.game.id) FROM Sesh s WHERE s.user=? GROUP BY s.game.id', [user])
 				.collect { r ->
-			[r[1], r[2], [playagain:['game',r[0]]]]
+			[r[1], r[2], [playagain:['browse', 'playDeck',r[0]]]]
 		}
 		if(values.size() > MAX) values = values[0..MAX-1]
 		[
@@ -42,7 +42,7 @@ class StatsService {
 
 	def getIncompleteGames(user) {
 		def values = Sesh.findAllByUserAndComplete(user, false, SORT_PARAMS).collect { s ->
-			[s.game.name, s.dateCreated, s.progressPercentage, [continue:o(s)]]
+			[s.game.name, s.dateCreated, s.progressPercentage, [continue:o(s, 'start')]]
 		}
 		[
 			keys:['name', 'started', 'progress'],
@@ -55,10 +55,10 @@ class StatsService {
 		]
 	}
 
-	private def o(o) {
-		String d = o instanceof Sesh? 'sesh': o instanceof Game? 'game': null
+	private def o(o, action='index') {
+		String d = o instanceof Sesh? 'sesh': o instanceof Game? 'browse': null
 		if(!d) throw new IllegalArgumentException()
-		[d, o.id]
+		[d, o.id, action]
 	}
 }
 
