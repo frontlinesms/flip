@@ -16,6 +16,13 @@
 	<input type="file" maxlength="100000" name="cardFile"/>
 </div>
 
+<div class="fieldcontain ${hasErrors(bean: deckInstance, field: 'tags', 'error')} ">
+	<label for="tags">
+		<g:message code="deck.tags.label" default="Tags" />
+	</label>
+	<g:textField name="tags" value="${deckInstance?.tags.join(',')}"/>
+</div>
+
 <div class="fieldcontain ${hasErrors(bean: deckInstance, field: 'name', 'error')} ">
 	<label for="name">
 		<g:message code="deck.name.label" default="Name" />

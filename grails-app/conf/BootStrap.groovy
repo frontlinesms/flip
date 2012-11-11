@@ -6,6 +6,7 @@ class BootStrap {
 	def r = new Random()
 
 	def init = { servletContext ->
+
 		try {
 			addStringMetaclassMethods()
 			addIntegerMetaclassMethods()

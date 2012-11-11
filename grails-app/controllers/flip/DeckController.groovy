@@ -39,6 +39,8 @@ class DeckController {
             return
         }
 
+        deckInstance.addTags(params.tags.split(/[,\s]+/)*.trim())
+
 		flash.message = message(code: 'default.created.message', args: [message(code: 'deck.label', default: 'Deck'), deckInstance.id])
         redirect(action: "show", id: deckInstance.id)
     }
@@ -117,6 +119,10 @@ class DeckController {
 	private def handleCardFileUpload(deck) {
 		def CommonsMultipartFile uploadedFile = params.cardFile
 		def contentType = uploadedFile.contentType
+		def size = uploadedFile.size
+
+		if(!size) return
+
 println "contentType: $contentType"
 		def cardParams
 		switch(contentType) {
@@ -131,8 +137,6 @@ println "contentType: $contentType"
 			default:
 				println "Processing as EXCEL"
 				def fileName = uploadedFile.originalFilename
-				def size = uploadedFile.size
-
 				def workbook = WorkbookFactory.create(new PushbackInputStream(uploadedFile.inputStream))
 				def config = DECK_COLUMN_MAP.clone()
 				config.sheet = workbook.getSheetName(0)
