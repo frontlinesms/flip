@@ -1,5 +1,5 @@
 <g:if test="${searchResult?.results}">
-    <div> Search String : ${searchString}</div>
+    <div> What you searched for : ${searchString}</div>
     <ul>
     	<g:each in="${matchedDecks}" var="result">
             <li class="deck-item">
