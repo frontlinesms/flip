@@ -14,7 +14,7 @@ class Sesh {
 	List cards
 	List ansas
 	int pos = 0
-	boolean complete
+	boolean complete = false
 
 	def nextCard() {
 		return cards[pos]

@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<meta name="layout" content="main"/>
-		<title>Hoe</title>
+		<title>Home</title>
 	</head>
 	<body>
 		<div>Info Graphic</div>

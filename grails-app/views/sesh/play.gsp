@@ -16,11 +16,11 @@
 				<a href="#" id="flip_button">flip</a>
 			</div>
 			<div id="ans_controls" style="display:none">
-				<g:link controller="sesh" action="nxt" params="${[lastAnsa:true, lastPos:sesh.pos, id:sesh.id]}">:-)</g:link>
-				<g:link controller="sesh" action="nxt" params="${[lastAnsa:false, lastPos:sesh.pos, id:sesh.id]}">:-(</g:link>
+				<g:link class="next_right" controller="sesh" action="nxt" params="${[lastAnsa:true, lastPos:sesh.pos, id:sesh.id]}">:-)</g:link>
+				<g:link class="next_wrong" controller="sesh" action="nxt" params="${[lastAnsa:false, lastPos:sesh.pos, id:sesh.id]}">:-(</g:link>
 			</div>
 			<div id="debug">
-				${sesh.ansas}
+				You can use 'F' to flip, 'J' for :-) and 'K' for :-(
 			</div>
 		</div>
 	</body>
@@ -32,6 +32,15 @@ $(function() {
 		$("#quest_controls").hide();
 		$("#card_b").show();
 		$("#ans_controls").show();
-	})
+	});
+	$(document).bind('keypress', 'f', function() { $("#flip_button").trigger("click") } );
+	$(document).bind('keypress', 'j', function() {
+		if($("#ans_controls").css('display') != 'none')
+			window.location = $(".next_right").attr('href'); 
+	});
+	$(document).bind('keypress', 'k', function() {
+		if($("#ans_controls").css('display') != 'none')
+			window.location = $(".next_wrong").attr('href');
+	});
 });
 </r:script>
