@@ -5,6 +5,8 @@ modules = {
 	flip {
 		dependsOn "jquery"
 		resource url:[dir:'js', file:"jquery.hotkeys.js"], disposition: "head"
+		resource url:[dir: 'js', file: 'jquery.flippy.min.js'], disposition:'head'
+		resource url:[dir: 'js', file: 'script.js'], disposition:'head'
 	}
 }
 

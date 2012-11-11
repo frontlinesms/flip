@@ -14,7 +14,7 @@
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<title><g:layoutTitle default="Grails"/> | FlipMe</title>
+	<title><g:layoutTitle default="Grails"/> | FlippMe</title>
 
 	<!-- Mobile Specific Metas
   ================================================== -->
@@ -38,12 +38,8 @@
 	<link rel="apple-touch-icon" sizes="72x72" href="${resource(dir: 'images', file: 'apple-touch-icon-72x72.png')}">
 	<link rel="apple-touch-icon" sizes="114x114" href="${resource(dir: 'images', file: 'apple-touch-icon-114x114.png')}">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-	<script src="${resource(dir: 'js', file: 'jquery.flippy.min.js')}"></script>
-	<script src="${resource(dir: 'js', file: 'script.js')}"></script>
+	<r:require module="flip"/>
 	<g:layoutHead/>
-    <r:require module="flip"/>
     <r:layoutResources />
 </head>
 <body class='container offset-by-four'>
@@ -53,5 +49,7 @@
     <div class='container sixteen columns'>
         <g:layoutBody/>
     </div>
+    <g:javascript library="application"/>
+	<r:layoutResources />
 </body>
 </html>
