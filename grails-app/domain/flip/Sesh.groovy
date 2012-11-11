@@ -48,9 +48,9 @@ class Sesh {
 	}
 
 	def getProgressPercentage() {
-		def ansaCount = ansas.size()
-		if(!ansaCount) return 100
-		return (pos * 100 / ansaCount) as Integer
+		def cardCount = cards.size()
+		if(!cardCount) return 100
+		return (pos * 100 / cardCount) as Integer
 	}
 }
 

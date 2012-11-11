@@ -6,7 +6,7 @@ class StatsService {
 
 	def getRecentGames(user) {
 		def values = Sesh.findAllByUser(user, SORT_PARAMS).collect { s ->
-			[s.game.name, s.lastUpdated, s.complete? s.correctPercentage: null, s.complete? [view:o(s, 'start'), playagain:o(s.game, 'playDeck')]: [continue:o(s, 'start')]]
+			[s.game.name, s.lastUpdated, s.complete? s.correctPercentage: null, s.complete? [view:o(s, 'stats'), playagain:o(s.game, 'playDeck')]: [continue:o(s, 'start')]]
 		}
 		/* [
 			keys:['name', 'played', 'score'],
