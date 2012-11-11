@@ -80,7 +80,7 @@ body {
 }
 
 .button-std:hover, .button-std:visited {
-    color: #fff;
+    color: #222;
 }
 
 div.choosers {

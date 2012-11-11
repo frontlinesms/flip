@@ -14,7 +14,7 @@
 		</div>
 		<div id="home_buttons">
 			<button id="browse">Browse</button>
-			<button id="sneak-peek">Sneak Peak</button>
+			<button id="sneak-peek">Sneak Peek</button>
 		</div>
 		<div display:"none">
 			<div>
@@ -48,6 +48,8 @@ $(function() {
 	      $("#intro").children(':last').remove();
 	    } );
 	});
+	$("#browse").live("click", function() { window.location = "browse"; })
+	$("#sneak-peek").live("click", function() { window.location = "browse/playDeck/1"; })
 })
 </r:script>
 </html>
